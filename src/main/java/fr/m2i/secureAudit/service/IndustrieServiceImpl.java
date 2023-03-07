@@ -38,7 +38,7 @@ public class IndustrieServiceImpl implements IndustrieService {
     public void update(int id_industrie, Industrie industrie) {
         Industrie existingIndustrie = industrieRepository.findById(id_industrie).orElse(null);
         if (existingIndustrie != null) {
-            existingIndustrie.setNumeroSiret(industrie.getNumeroSiret());
+            existingIndustrie.setNumeroSiret(Long.valueOf(Long.toString(industrie.getNumeroSiret())));
             existingIndustrie.setRaisonSociale(industrie.getRaisonSociale());
             existingIndustrie.setAuditeur(industrie.getAuditeur());
             industrieRepository.save(existingIndustrie);

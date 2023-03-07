@@ -20,11 +20,11 @@ public class Audit {
 
     private int cout_total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_industrie")
     private Industrie industrie;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_auditeur")
     private Auditeur auditeur;
 

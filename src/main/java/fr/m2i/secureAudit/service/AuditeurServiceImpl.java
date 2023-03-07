@@ -30,9 +30,13 @@ public class AuditeurServiceImpl implements AuditeurService {
     @Override
     @Transactional
     public Auditeur findById(int id_auditeur) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM Auditeur a WHERE a.idAuditeur = :idAuditeur");
-        query.setParameter("idAuditeur", id_auditeur);
-        return (Auditeur) query.getSingleResult();
+        Query query = entityManager.createNativeQuery("SELECT * FROM auditeur a WHERE a.id_auditeur = :id_auditeur", Auditeur.class);
+        query.setParameter("id_auditeur", id_auditeur);
+        List<Auditeur> result = query.getResultList();
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+        return null;
     }
 
 
