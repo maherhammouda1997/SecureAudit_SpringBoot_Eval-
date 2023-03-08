@@ -20,7 +20,7 @@ public class Industrie {
 
     public Industrie() {}
 
-    public Industrie(int numero_Siret, String raison_sociale, Auditeur auditeur) {
+    public Industrie(long numero_Siret, String raison_sociale, Auditeur auditeur) {
         this.numero_siret = numero_siret;
         this.raison_sociale = raison_sociale;
         this.auditeur = auditeur;
@@ -67,11 +67,13 @@ public class Industrie {
         this.id_industrie = id_industrie;
     }
 
+
     public Long getNumero_siret() {
         return numero_siret;
     }
 
     public void setNumero_siret(Long numero_siret) {
+
         this.numero_siret = numero_siret;
     }
 
