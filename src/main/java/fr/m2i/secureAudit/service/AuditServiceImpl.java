@@ -2,12 +2,11 @@ package fr.m2i.secureAudit.service;
 
 import fr.m2i.secureAudit.model.Audit;
 import fr.m2i.secureAudit.repository.AuditRepository;
+import fr.m2i.secureAudit.serviceInterfaces.AuditService;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -28,7 +27,7 @@ public class AuditServiceImpl implements AuditService {
     }
 
     @Override
-    public List<Audit> findAll() {
+    public List<Audit> getAudit() {
         return auditRepository.findAll();
     }
 

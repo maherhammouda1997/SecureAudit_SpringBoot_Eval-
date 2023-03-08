@@ -1,7 +1,7 @@
 package fr.m2i.secureAudit.controller;
 
 import fr.m2i.secureAudit.model.Industrie;
-import fr.m2i.secureAudit.service.IndustrieService;
+import fr.m2i.secureAudit.serviceInterfaces.IndustrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

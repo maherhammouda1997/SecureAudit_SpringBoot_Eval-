@@ -2,6 +2,7 @@ package fr.m2i.secureAudit.service;
 
 import fr.m2i.secureAudit.model.Industrie;
 import fr.m2i.secureAudit.repository.IndustrieRepository;
+import fr.m2i.secureAudit.serviceInterfaces.IndustrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,8 +39,8 @@ public class IndustrieServiceImpl implements IndustrieService {
     public void update(int id_industrie, Industrie industrie) {
         Industrie existingIndustrie = industrieRepository.findById(id_industrie).orElse(null);
         if (existingIndustrie != null) {
-            existingIndustrie.setNumeroSiret(industrie.getNumeroSiret());
-            existingIndustrie.setRaisonSociale(industrie.getRaisonSociale());
+            existingIndustrie.setNumero_siret(Long.valueOf(Long.toString(industrie.getNumero_siret())));
+            existingIndustrie.setRaison_sociale(industrie.getRaison_sociale());
             existingIndustrie.setAuditeur(industrie.getAuditeur());
             industrieRepository.save(existingIndustrie);
         }

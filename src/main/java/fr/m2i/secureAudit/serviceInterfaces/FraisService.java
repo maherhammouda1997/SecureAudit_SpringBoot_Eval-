@@ -1,4 +1,4 @@
-package fr.m2i.secureAudit.service;
+package fr.m2i.secureAudit.serviceInterfaces;
 
 import java.util.List;
 import fr.m2i.secureAudit.model.Frais;

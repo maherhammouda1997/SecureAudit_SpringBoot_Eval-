@@ -23,12 +23,45 @@ public class Auditeur {
         this.prenom = prenom;
     }
 
-    public int getIdAuditeur() {
+//    public int getIdAuditeur() {
+//        return id_auditeur;
+//    }
+//
+//    public void setIdAuditeur(int id_auditeur) {
+//        this.id_auditeur = id_auditeur;
+//    }
+//
+//    public String getCivilite() {
+//        return civilite;
+//    }
+//
+//    public void setCivilite(String civilite) {
+//        this.civilite = civilite;
+//    }
+//
+//    public String getNom() {
+//        return nom;
+//    }
+//
+//    public void setNom(String nom) {
+//        this.nom = nom;
+//    }
+//
+//    public String getPrenom() {
+//        return prenom;
+//    }
+//
+//    public void setPrenom(String prenom) {
+//        this.prenom = prenom;
+//    }
+
+
+    public int getId_auditeur() {
         return id_auditeur;
     }
 
-    public void setIdAuditeur(int idAuditeur) {
-        this.id_auditeur = idAuditeur;
+    public void setId_auditeur(int id_auditeur) {
+        this.id_auditeur = id_auditeur;
     }
 
     public String getCivilite() {

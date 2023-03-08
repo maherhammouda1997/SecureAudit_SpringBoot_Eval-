@@ -1,7 +1,7 @@
 package fr.m2i.secureAudit.controller;
 
 import fr.m2i.secureAudit.model.Categorie;
-import fr.m2i.secureAudit.service.CategorieService;
+import fr.m2i.secureAudit.serviceInterfaces.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

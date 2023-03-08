@@ -2,8 +2,8 @@ package fr.m2i.secureAudit.service;
 
 import fr.m2i.secureAudit.model.Frais;
 import fr.m2i.secureAudit.repository.FraisRepository;
+import fr.m2i.secureAudit.serviceInterfaces.FraisService;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,9 +42,9 @@ public class FraisServiceImpl implements FraisService {
     public void update(int id_frais, Frais frais) {
         Frais existingFrais = entityManager.find(Frais.class, id_frais);
         if (existingFrais != null) {
-            existingFrais.setDateDebutFrais(frais.getDateDebutFrais());
+            existingFrais.setDate_debut_frais(frais.getDate_debut_frais());
             existingFrais.setMontant(frais.getMontant());
-            existingFrais.setEstRembourse(frais.getEstRembourse());
+            existingFrais.setEst_rembourse(frais.getEst_rembourse());
             existingFrais.setAudit(frais.getAudit());
             existingFrais.setCategorie(frais.getCategorie());
             existingFrais.setAuditeur(frais.getAuditeur());

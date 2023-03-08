@@ -1,4 +1,4 @@
-package fr.m2i.secureAudit.service;
+package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Auditeur;
 import java.util.List;
@@ -10,7 +10,7 @@ public interface AuditeurService {
 
     List<Auditeur> getAuditeurs();
 
-    Auditeur save(Auditeur auditeur);
+    Auditeur createAuditeur(Auditeur auditeur);
 
     void update(int id_auditeur, Auditeur auditeur);
 

@@ -2,6 +2,7 @@ package fr.m2i.secureAudit.service;
 
 import fr.m2i.secureAudit.model.Categorie;
 import fr.m2i.secureAudit.repository.CategorieRepository;
+import fr.m2i.secureAudit.serviceInterfaces.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

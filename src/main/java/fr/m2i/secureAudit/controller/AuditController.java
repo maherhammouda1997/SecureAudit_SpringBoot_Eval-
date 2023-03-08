@@ -1,7 +1,7 @@
 package fr.m2i.secureAudit.controller;
 
 import fr.m2i.secureAudit.model.Audit;
-import fr.m2i.secureAudit.service.AuditService;
+import fr.m2i.secureAudit.serviceInterfaces.AuditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ public class AuditController {
     private AuditService auditService;
 
     @GetMapping("/get")
-    public List<Audit> getAllAudits() {
-        return auditService.findAll();
+    public List<Audit> getAudit() {
+        return auditService.getAudit();
     }
 
     @GetMapping("/get/{id_audit}")

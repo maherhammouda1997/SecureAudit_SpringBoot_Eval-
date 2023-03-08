@@ -2,6 +2,7 @@ package fr.m2i.secureAudit.service;
 
 import fr.m2i.secureAudit.model.Auditeur;
 import fr.m2i.secureAudit.repository.AuditeurRepository;
+import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
@@ -21,7 +22,6 @@ public class AuditeurServiceImpl implements AuditeurService {
         this.entityManager = entityManager;
     }
 
-
     @Override
     public List<Auditeur> getAuditeurs() {
         return auditeurRepository.findAll();
@@ -30,16 +30,21 @@ public class AuditeurServiceImpl implements AuditeurService {
     @Override
     @Transactional
     public Auditeur findById(int id_auditeur) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM Auditeur a WHERE a.idAuditeur = :idAuditeur");
-        query.setParameter("idAuditeur", id_auditeur);
-        return (Auditeur) query.getSingleResult();
+        Query query = entityManager.createNativeQuery("SELECT * FROM auditeur a WHERE a.id_auditeur = :id_auditeur", Auditeur.class);
+        query.setParameter("id_auditeur", id_auditeur);
+        List<Auditeur> result = query.getResultList();
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+        return null;
     }
-
 
     @Override
-    public Auditeur save(Auditeur auditeur) {
+    //@Transactional
+    public Auditeur createAuditeur(Auditeur auditeur) {
         return auditeurRepository.save(auditeur);
     }
+
 
     @Override
     public void update(int id_auditeur, Auditeur auditeur) {

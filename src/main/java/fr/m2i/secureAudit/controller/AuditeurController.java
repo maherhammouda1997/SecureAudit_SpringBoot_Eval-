@@ -1,7 +1,7 @@
 package fr.m2i.secureAudit.controller;
 
 import fr.m2i.secureAudit.model.Auditeur;
-import fr.m2i.secureAudit.service.AuditeurService;
+import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,19 +34,28 @@ public class AuditeurController {
         return ResponseEntity.ok().body(auditeur);
     }
 
+//    @PostMapping("/post")
+//    public ResponseEntity<Auditeur> createAuditeur(@RequestBody Auditeur auditeur) {
+//        Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
+//        return new ResponseEntity<>(createdAuditeur, HttpStatus.CREATED);
+//    }
     @PostMapping("/post")
-    public ResponseEntity<Auditeur> createAuditeur(@RequestBody Auditeur auditeur) {
-        Auditeur createdAuditeur = auditeurService.save(auditeur);
-        return new ResponseEntity<>(createdAuditeur, HttpStatus.CREATED);
+    public String createAuditeur(@RequestBody Auditeur auditeur) {
+        Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
+        if (createdAuditeur == null) {
+            return "error"; }
+        else {
+            return "new Auditeur added";
+        }
     }
 
-    @PutMapping("/put/{id}")
+    @PutMapping("/put/{id_auditeur}")
     public ResponseEntity<Void> updateAuditeur(@PathVariable("id_auditeur") int id_auditeur, @RequestBody Auditeur auditeur) {
         auditeurService.update(id_auditeur, auditeur);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/del/{id}")
+    @DeleteMapping("/del/{id_auditeur}")
     public ResponseEntity<Void> deleteAuditeurById(@PathVariable("id_auditeur") int id_auditeur) {
         auditeurService.deleteById(id_auditeur);
         return ResponseEntity.noContent().build();

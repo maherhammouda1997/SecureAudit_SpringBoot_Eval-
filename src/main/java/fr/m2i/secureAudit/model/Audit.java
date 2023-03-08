@@ -20,11 +20,11 @@ public class Audit {
 
     private int cout_total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_industrie")
     private Industrie industrie;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_auditeur")
     private Auditeur auditeur;
 
@@ -39,11 +39,68 @@ public class Audit {
         this.auditeur = auditeur;
     }
 
-    public int getIdAudit() {
+//    public int getIdAudit() {
+//        return id_audit;
+//    }
+//
+//    public void setIdAudit(int id_audit) {
+//        this.id_audit = id_audit;
+//    }
+//
+//    public Date getDate_debut() {
+//        return date_debut;
+//    }
+//
+//    public void setDate_debut(Date date_debut) {
+//        this.date_debut = date_debut;
+//    }
+//
+//    public int getDuree() {
+//        return duree;
+//    }
+//
+//    public void setDuree(int duree) {
+//        this.duree = duree;
+//    }
+//
+//    public int getCout_jour() {
+//        return cout_jour;
+//    }
+//
+//    public void setCout_jour(int cout_jour) {
+//        this.cout_jour = cout_jour;
+//    }
+//
+//    public int getCout_total() {
+//        return cout_total;
+//    }
+//
+//    public void setCout_total(int cout_total) {
+//        this.cout_total = cout_total;
+//    }
+//
+//    public Industrie getIndustrie() {
+//        return industrie;
+//    }
+//
+//    public void setIndustrie(Industrie industrie) {
+//        this.industrie = industrie;
+//    }
+//
+//    public Auditeur getAuditeur() {
+//        return auditeur;
+//    }
+//
+//    public void setAuditeur(Auditeur auditeur) {
+//        this.auditeur = auditeur;
+//    }
+
+
+    public int getId_audit() {
         return id_audit;
     }
 
-    public void setIdAudit(int id_audit) {
+    public void setId_audit(int id_audit) {
         this.id_audit = id_audit;
     }
 

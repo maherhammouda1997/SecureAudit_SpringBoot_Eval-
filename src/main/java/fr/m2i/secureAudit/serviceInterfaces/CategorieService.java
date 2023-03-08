@@ -1,4 +1,4 @@
-package fr.m2i.secureAudit.service;
+package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Categorie;
 import java.util.List;
