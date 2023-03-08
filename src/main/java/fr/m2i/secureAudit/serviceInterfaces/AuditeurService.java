@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AuditeurService {
 
-    Auditeur findById(int id_auditeur);
+    Auditeur rechercheById(int id_auditeur);
 
     List<Auditeur> getAuditeurs();
 
@@ -14,6 +14,6 @@ public interface AuditeurService {
 
     void update(int id_auditeur, Auditeur auditeur);
 
-    void deleteById(int id_auditeur);
+    String deleteById(int id_auditeur);
 }
 

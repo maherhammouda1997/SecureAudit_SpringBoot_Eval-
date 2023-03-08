@@ -29,7 +29,7 @@ public class AuditeurServiceImpl implements AuditeurService {
 
     @Override
     @Transactional
-    public Auditeur findById(int id_auditeur) {
+    public Auditeur rechercheById(int id_auditeur) {
         Query query = entityManager.createNativeQuery("SELECT * FROM auditeur a WHERE a.id_auditeur = :id_auditeur", Auditeur.class);
         query.setParameter("id_auditeur", id_auditeur);
         List<Auditeur> result = query.getResultList();
@@ -46,21 +46,33 @@ public class AuditeurServiceImpl implements AuditeurService {
     }
 
 
+//    @Override
+//    public void update(int id_auditeur, Auditeur auditeur) {
+//        Auditeur existingAuditeur = entityManager.find(Auditeur.class, id_auditeur);
+//        if (existingAuditeur != null) {
+//            existingAuditeur.setCivilite(auditeur.getCivilite());
+//            existingAuditeur.setNom(auditeur.getNom());
+//            existingAuditeur.setPrenom(auditeur.getPrenom());
+//            entityManager.merge(existingAuditeur);
+//        }
+//    }
     @Override
+    @Transactional
     public void update(int id_auditeur, Auditeur auditeur) {
-        Auditeur existingAuditeur = entityManager.find(Auditeur.class, id_auditeur);
+        Auditeur existingAuditeur = auditeurRepository.findById(id_auditeur).orElse(null);
         if (existingAuditeur != null) {
             existingAuditeur.setCivilite(auditeur.getCivilite());
             existingAuditeur.setNom(auditeur.getNom());
             existingAuditeur.setPrenom(auditeur.getPrenom());
-            entityManager.merge(existingAuditeur);
+            auditeurRepository.save(existingAuditeur);
         }
     }
 
 
     @Override
-    public void deleteById(int id_auditeur) {
+    public String deleteById(int id_auditeur) {
         auditeurRepository.deleteById(id_auditeur);
+        return "Auditeur deleted";
     }
 }
 
