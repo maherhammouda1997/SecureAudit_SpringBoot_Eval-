@@ -50,7 +50,7 @@ public class AuditeurController {
     }
 
     @PutMapping("/put/{id_auditeur}")
-    public ResponseEntity<Void> updateAuditeur(@PathVariable("id_auditeur") int id_auditeur, @RequestBody Auditeur auditeur) {
+    public ResponseEntity<Auditeur> updateAuditeur(@PathVariable("id_auditeur") int id_auditeur, @RequestBody Auditeur auditeur) {
         auditeurService.update(id_auditeur, auditeur);
         return ResponseEntity.noContent().build();
     }

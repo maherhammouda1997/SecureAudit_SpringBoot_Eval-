@@ -12,7 +12,7 @@ public interface AuditeurService {
 
     Auditeur createAuditeur(Auditeur auditeur);
 
-    void update(int id_auditeur, Auditeur auditeur);
+    Auditeur update(int id_auditeur, Auditeur auditeur);
 
     void deleteById(int id_auditeur);
 }
