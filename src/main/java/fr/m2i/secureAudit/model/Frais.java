@@ -24,19 +24,14 @@ public class Frais {
     @JoinColumn(name = "id_categorie")
     private Categorie categorie;
 
-    @ManyToOne
-    @JoinColumn(name = "id_auditeur")
-    private Auditeur auditeur;
-
     public Frais() {}
 
-    public Frais(Date date_debut_frais, int montant, Boolean est_rembourse, Audit audit, Categorie categorie, Auditeur auditeur){
+    public Frais(Date date_debut_frais, int montant, Boolean est_rembourse, Audit audit, Categorie categorie){
         this.date_debut_frais = date_debut_frais;
         this.montant = montant;
         this.est_rembourse = est_rembourse;
         this.audit = audit;
         this.categorie = categorie;
-        this.auditeur = auditeur;
     }
 
     public int getId_frais() {
@@ -87,12 +82,5 @@ public class Frais {
         this.categorie = categorie;
     }
 
-    public Auditeur getAuditeur() {
-        return auditeur;
-    }
-
-    public void setAuditeur(Auditeur auditeur) {
-        this.auditeur = auditeur;
-    }
 }
 

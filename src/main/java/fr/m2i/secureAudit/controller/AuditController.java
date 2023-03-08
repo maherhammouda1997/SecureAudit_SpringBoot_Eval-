@@ -36,13 +36,6 @@ public class AuditController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Audit added successfully");
     }
 
-//    @PutMapping("/put/{id_audit}")
-//    public ResponseEntity<String> updateAudit(@PathVariable int id_audit, @RequestBody Audit audit) {
-//        audit.setId_audit(id_audit);
-//        String result = auditService.update(audit, audit.getIndustrie().getId_industrie(),  audit.getAuditeur().getId_auditeur());
-//        return ResponseEntity.ok(result);
-//    }
-
     @PutMapping("/put/{id_audit}")
     public ResponseEntity<String> updateAudit(@PathVariable int id_audit, @RequestBody Audit audit) {
         audit.setId_audit(id_audit);

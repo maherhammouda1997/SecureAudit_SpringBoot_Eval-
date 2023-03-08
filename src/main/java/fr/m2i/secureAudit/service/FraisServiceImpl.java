@@ -1,6 +1,6 @@
 package fr.m2i.secureAudit.service;
 
-import fr.m2i.secureAudit.model.Frais;
+import fr.m2i.secureAudit.model.*;
 import fr.m2i.secureAudit.repository.FraisRepository;
 import fr.m2i.secureAudit.serviceInterfaces.FraisService;
 import jakarta.persistence.EntityManager;
@@ -33,13 +33,26 @@ public class FraisServiceImpl implements FraisService {
     }
 
     @Override
-    public void save(Frais frais) {
-        fraisRepository.save(frais);
+    @Transactional
+    public String addFrais(Frais frais, int id_audit, int id_categorie) {
+        Audit audit = entityManager.find(Audit.class, id_audit);
+        if (audit == null) {
+            throw new IllegalArgumentException("Invalid audit ID: " + id_audit);
+        }
+
+        Categorie categorie = entityManager.find(Categorie.class, id_categorie);
+        if (categorie == null) {
+            throw new IllegalArgumentException("Invalid categorie ID: " + id_categorie);
+        }
+        frais.setAudit(audit);
+        frais.setCategorie(categorie);
+        entityManager.persist(frais);
+        return "frais added successfully";
     }
 
     @Override
     @Transactional
-    public void update(int id_frais, Frais frais) {
+    public String update(int id_frais, Frais frais) {
         Frais existingFrais = entityManager.find(Frais.class, id_frais);
         if (existingFrais != null) {
             existingFrais.setDate_debut_frais(frais.getDate_debut_frais());
@@ -47,9 +60,10 @@ public class FraisServiceImpl implements FraisService {
             existingFrais.setEst_rembourse(frais.getEst_rembourse());
             existingFrais.setAudit(frais.getAudit());
             existingFrais.setCategorie(frais.getCategorie());
-            existingFrais.setAuditeur(frais.getAuditeur());
+           // existingFrais.setAuditeur(frais.getAuditeur());
             entityManager.merge(existingFrais);
         }
+        return  "frais updated successfully";
     }
 
     @Override

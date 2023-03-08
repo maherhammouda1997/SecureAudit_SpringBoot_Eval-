@@ -41,7 +41,7 @@ public class IndustrieController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/get/{id_industrie}")
+    @PutMapping("/put/{id_industrie}")
     public ResponseEntity<Void> update(@PathVariable int id_industrie, @RequestBody Industrie industrie) {
         industrieService.update(id_industrie, industrie);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

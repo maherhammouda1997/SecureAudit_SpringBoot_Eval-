@@ -31,21 +31,21 @@ public class FraisController {
         return fraisService.findAll();
     }
 
-    @PostMapping("/post")
-    public void createFrais(@RequestBody Frais frais) {
-        fraisService.save(frais);
+    @PostMapping("/post/{id_audit}/{id_categorie}")
+    public ResponseEntity<String> addFrais(@PathVariable int id_audit, @PathVariable int id_categorie ,@RequestBody Frais frais) {
+        fraisService.addFrais(frais, id_audit, id_categorie);
+        return ResponseEntity.status(HttpStatus.CREATED).body("frais added successfully");
     }
 
     @PutMapping("/put/{id_frais}")
-    public ResponseEntity<Frais> updateFrais(@PathVariable int id_frais, @RequestBody Frais frais) {
+    public ResponseEntity<String> updateFrais(@PathVariable int id_frais, @RequestBody Frais frais) {
         Frais existingFrais = fraisService.findById(id_frais);
         if (existingFrais == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             frais.setId_frais(id_frais);
             fraisService.update(id_frais, frais);
-            return new ResponseEntity<>(frais, HttpStatus.OK);
-        }
+            return ResponseEntity.status(HttpStatus.CREATED).body("frais updated successfully")  ;      }
     }
 
     @DeleteMapping("/del/{id_frais}")

@@ -1,6 +1,5 @@
 package fr.m2i.secureAudit.service;
 
-//import fr.m2i.secureAudit.exception.ResourceNotFoundException;
 import fr.m2i.secureAudit.model.Auditeur;
 import fr.m2i.secureAudit.repository.AuditeurRepository;
 import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
@@ -56,22 +55,6 @@ public class AuditeurServiceImpl implements AuditeurService {
             auditeurRepository.save(existingAuditeur);
         }
     }
-
-    /*
-    @Override
-    public Auditeur update(int id_auditeur, Auditeur auditeur) {
-        Auditeur updateAuditeur = auditeurRepository.findById(id_auditeur)
-                .orElseThrow(() -> new ResourceNotFoundException("Auditeur introuvable"));
-
-        updateAuditeur.setCivilite(auditeur.getCivilite());
-        updateAuditeur.setNom(auditeur.getNom());
-        updateAuditeur.setPrenom(auditeur.getPrenom());
-
-        auditeurRepository.save(updateAuditeur);
-
-        return ResponseEntity.ok(updateAuditeur).getBody();
-    }
-    */
 
     @Override
     public void deleteById(int id_auditeur) {

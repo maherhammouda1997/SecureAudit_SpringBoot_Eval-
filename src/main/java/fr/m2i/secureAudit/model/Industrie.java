@@ -15,16 +15,12 @@ public class Industrie {
     @Column(name = "raison_sociale")
     private String raison_sociale;
 
-    @ManyToOne
-    @JoinColumn(name = "id_auditeur")
-    private Auditeur auditeur;
-
     public Industrie() {}
 
-    public Industrie(long numero_Siret, String raison_sociale, Auditeur auditeur) {
+    public Industrie(long numero_Siret, String raison_sociale) {
         this.numero_siret = numero_siret;
         this.raison_sociale = raison_sociale;
-        this.auditeur = auditeur;
+        //this.auditeur = auditeur;
     }
 
     public int getId_industrie() {
@@ -52,11 +48,4 @@ public class Industrie {
         this.raison_sociale = raison_sociale;
     }
 
-    public Auditeur getAuditeur() {
-        return auditeur;
-    }
-
-    public void setAuditeur(Auditeur auditeur) {
-        this.auditeur = auditeur;
-    }
 }

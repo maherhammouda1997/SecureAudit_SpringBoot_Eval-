@@ -33,11 +33,6 @@ public class AuditServiceImpl implements AuditService {
         return auditRepository.findAll();
     }
 
-//    @Override
-//    public void save(Audit audit) {
-//        auditRepository.save(audit);
-//    }
-
     @Override
     @Transactional
     public String addAudit(Audit audit, int id_industrie, int id_auditeur) {
@@ -51,28 +46,13 @@ public class AuditServiceImpl implements AuditService {
         }
         audit.setIndustrie(industrie);
         audit.setAuditeur(auditeur);
+
         if (audit.getDuree() > 4 ) {
             throw new IllegalArgumentException("duree doit etre inferieure a 4 jours");
         }
         entityManager.persist(audit);
         return "Audit added successfully";
     }
-
-
-//    @Override
-//    @Transactional
-//    public void update(int id_audit, Audit audit) {
-//        Audit existingAudit = entityManager.find(Audit.class, id_audit);
-//        if (existingAudit != null) {
-//            existingAudit.setDate_debut(audit.getDate_debut());
-//            existingAudit.setDuree(audit.getDuree());
-//            existingAudit.setCout_jour(audit.getCout_jour());
-//            existingAudit.setCout_total(audit.getCout_total());
-//            existingAudit.setIndustrie(audit.getIndustrie());
-//            existingAudit.setAuditeur(audit.getAuditeur());
-//            entityManager.merge(existingAudit);
-//        }
-//    }
 
 
     @Override

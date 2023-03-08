@@ -42,7 +42,6 @@ public class IndustrieServiceImpl implements IndustrieService {
             existingIndustrie.setNumero_siret(Long.valueOf(Long.toString(industrie.getNumero_siret())));
             existingIndustrie.setRaison_sociale(industrie.getRaison_sociale());
 
-            existingIndustrie.setAuditeur(industrie.getAuditeur());
             industrieRepository.save(existingIndustrie);
         }
     }

@@ -9,9 +9,9 @@ public interface FraisService {
 
     List<Frais> findAll();
 
-    void save(Frais frais);
+    String addFrais(Frais frais, int id_audit, int id_categorie);
 
-    void update(int id_frais, Frais frais);
+    String update(int id_frais, Frais frais);
 
     void delete(int id_frais);
 }
