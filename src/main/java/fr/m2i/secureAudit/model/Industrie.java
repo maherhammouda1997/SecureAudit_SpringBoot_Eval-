@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "industrie")
 public class Industrie {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_industrie;
 
+    @Column(name = "numero_siret")
     private Long numero_siret;
 
+    @Column(name = "raison_sociale")
     private String raison_sociale;
 
     @ManyToOne
@@ -26,39 +27,6 @@ public class Industrie {
         this.auditeur = auditeur;
     }
 
-//    public int getIdIndustrie() {
-//        return id_industrie;
-//    }
-//
-//    public void setIdIndustrie(int id_industrie) {
-//        this.id_industrie = id_industrie;
-//    }
-//
-//    public Long getNumeroSiret() {
-//        return numero_siret;
-//    }
-//
-//    public void setNumeroSiret(Long numero_siret) {
-//        this.numero_siret = numero_siret;
-//    }
-//
-//    public String getRaisonSociale() {
-//        return raison_sociale;
-//    }
-//
-//    public void setRaisonSociale(String raison_sociale) {
-//        this.raison_sociale = raison_sociale;
-//    }
-//
-//    public Auditeur getAuditeur() {
-//        return auditeur;
-//    }
-//
-//    public void setAuditeur(Auditeur auditeur) {
-//        this.auditeur = auditeur;
-//    }
-
-
     public int getId_industrie() {
         return id_industrie;
     }
@@ -66,7 +34,6 @@ public class Industrie {
     public void setId_industrie(int id_industrie) {
         this.id_industrie = id_industrie;
     }
-
 
     public Long getNumero_siret() {
         return numero_siret;
@@ -93,4 +60,3 @@ public class Industrie {
         this.auditeur = auditeur;
     }
 }
-

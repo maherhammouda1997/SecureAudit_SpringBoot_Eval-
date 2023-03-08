@@ -2,11 +2,9 @@ package fr.m2i.secureAudit.model;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "categorie")
 public class Categorie {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_categorie;
