@@ -1,8 +1,9 @@
 package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Auditeur;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface AuditeurService {
 
@@ -12,8 +13,9 @@ public interface AuditeurService {
 
     Auditeur createAuditeur(Auditeur auditeur);
 
-    void update(int id_auditeur, Auditeur auditeur);
+    @Transactional
+    abstract void update(int id_auditeur, Auditeur auditeur);
 
-    String deleteById(int id_auditeur);
+    void deleteById(int id_auditeur);
 }
 

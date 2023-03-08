@@ -3,6 +3,7 @@ package fr.m2i.secureAudit.service;
 import fr.m2i.secureAudit.model.Categorie;
 import fr.m2i.secureAudit.repository.CategorieRepository;
 import fr.m2i.secureAudit.serviceInterfaces.CategorieService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +16,13 @@ public class CategorieServiceImpl implements CategorieService {
     private CategorieRepository categorieRepository;
 
     @Override
-    public Categorie findById(int id_categorie) {
-        return categorieRepository.findById(id_categorie).orElse(null);
+    public List<Categorie> getCategories() {
+        return categorieRepository.findAll();
     }
 
     @Override
-    public List<Categorie> findAll() {
-        return categorieRepository.findAll();
+    public Categorie getById(int id_categorie) {
+        return categorieRepository.findById(id_categorie).orElse(null);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class CategorieServiceImpl implements CategorieService {
     }
 
     @Override
+    @Transactional
     public void update(int id_categorie, Categorie categorie) {
         Categorie existingCategorie = categorieRepository.findById(id_categorie).orElse(null);
         if (existingCategorie != null) {
@@ -39,7 +41,7 @@ public class CategorieServiceImpl implements CategorieService {
     }
 
     @Override
-    public void delete(int id_categorie) {
+    public void deleteById(int id_categorie) {
         categorieRepository.deleteById(id_categorie);
     }
 }
