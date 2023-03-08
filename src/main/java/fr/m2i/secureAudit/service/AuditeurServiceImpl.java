@@ -1,6 +1,6 @@
 package fr.m2i.secureAudit.service;
 
-import fr.m2i.secureAudit.exception.ResourceNotFoundException;
+//import fr.m2i.secureAudit.exception.ResourceNotFoundException;
 import fr.m2i.secureAudit.model.Auditeur;
 import fr.m2i.secureAudit.repository.AuditeurRepository;
 import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
@@ -8,7 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class AuditeurServiceImpl implements AuditeurService {
 
     @Override
     @Transactional
-    public Auditeur findById(int id_auditeur) {
+    public Auditeur rechercheById(int id_auditeur) {
         Query query = entityManager.createNativeQuery("SELECT * FROM auditeur a WHERE a.id_auditeur = :id_auditeur", Auditeur.class);
         query.setParameter("id_auditeur", id_auditeur);
         List<Auditeur> result = query.getResultList();
@@ -47,19 +46,19 @@ public class AuditeurServiceImpl implements AuditeurService {
         return auditeurRepository.save(auditeur);
     }
 
-
-    /*
     @Override
-    public void update (int id_auditeur, Auditeur auditeur){
-        Auditeur existingAuditeur = entityManager.find(Auditeur.class, id_auditeur);
+    @Transactional
+    public void update(int id_auditeur, Auditeur auditeur) {
+        Auditeur existingAuditeur = auditeurRepository.findById(id_auditeur).orElse(null);
         if (existingAuditeur != null) {
             existingAuditeur.setCivilite(auditeur.getCivilite());
             existingAuditeur.setNom(auditeur.getNom());
             existingAuditeur.setPrenom(auditeur.getPrenom());
-            entityManager.merge(existingAuditeur);
+            auditeurRepository.save(existingAuditeur);
         }
-    }*/
+    }
 
+    /*
     @Override
     public Auditeur update(int id_auditeur, Auditeur auditeur) {
         Auditeur updateAuditeur = auditeurRepository.findById(id_auditeur)
@@ -73,6 +72,7 @@ public class AuditeurServiceImpl implements AuditeurService {
 
         return ResponseEntity.ok(updateAuditeur).getBody();
     }
+    */
 
     @Override
     public void deleteById(int id_auditeur) {

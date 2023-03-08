@@ -30,7 +30,7 @@ public class AuditeurController {
 
     @GetMapping("/get/{id_auditeur}")
     public ResponseEntity<Auditeur> getAuditeurById(@PathVariable("id_auditeur") int id_auditeur) {
-        Auditeur auditeur = auditeurService.findById(id_auditeur);
+        Auditeur auditeur = auditeurService.rechercheById(id_auditeur);
         return ResponseEntity.ok().body(auditeur);
     }
 
@@ -56,9 +56,11 @@ public class AuditeurController {
     }
 
     @DeleteMapping("/del/{id_auditeur}")
-    public ResponseEntity<Void> deleteAuditeurById(@PathVariable("id_auditeur") int id_auditeur) {
+    public ResponseEntity<String> deleteAuditeurById(@PathVariable("id_auditeur") int id_auditeur) {
         auditeurService.deleteById(id_auditeur);
-        return ResponseEntity.noContent().build();
+        String message = "auditeur deleted";
+        return ResponseEntity.ok(message);
     }
+
 }
 
