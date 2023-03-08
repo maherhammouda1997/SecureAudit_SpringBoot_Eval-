@@ -30,16 +30,26 @@ public class AuditController {
         return ResponseEntity.ok(audit);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<Audit> addAudit(@RequestBody Audit audit) {
-        auditService.save(audit);
-        return ResponseEntity.status(HttpStatus.CREATED).body(audit);
+    @PostMapping("/post/{id_industrie}/{id_auditeur}")
+    public ResponseEntity<String> addAudit(@PathVariable int id_industrie, @PathVariable int id_auditeur ,@RequestBody Audit audit) {
+        auditService.addAudit(audit, id_industrie, id_auditeur);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Audit added successfully");
     }
 
-    @PutMapping("/put/{id_auditd}")
-    public ResponseEntity<Audit> updateAudit(@PathVariable int id_audit, @RequestBody Audit audit) {
-        auditService.update(id_audit, audit);
-        return ResponseEntity.ok(audit);
+//    @PutMapping("/put/{id_audit}")
+//    public ResponseEntity<String> updateAudit(@PathVariable int id_audit, @RequestBody Audit audit) {
+//        audit.setId_audit(id_audit);
+//        String result = auditService.update(audit, audit.getIndustrie().getId_industrie(),  audit.getAuditeur().getId_auditeur());
+//        return ResponseEntity.ok(result);
+//    }
+
+    @PutMapping("/put/{id_audit}")
+    public ResponseEntity<String> updateAudit(@PathVariable int id_audit, @RequestBody Audit audit) {
+        audit.setId_audit(id_audit);
+        int id_industrie = audit.getIndustrie() != null ? audit.getIndustrie().getId_industrie() : 0;
+        int id_auditeur = audit.getAuditeur() != null ? audit.getAuditeur().getId_auditeur() : 0;
+        String result = auditService.update(audit, id_industrie, id_auditeur);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/del/{id_audit}")
