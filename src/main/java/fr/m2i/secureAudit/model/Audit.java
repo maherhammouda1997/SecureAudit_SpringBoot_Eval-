@@ -39,11 +39,11 @@ public class Audit {
         this.auditeur = auditeur;
     }
 
-    public int getIdAudit() {
+    public int getId_audit() {
         return id_audit;
     }
 
-    public void setIdAudit(int id_audit) {
+    public void setId_audit(int id_audit) {
         this.id_audit = id_audit;
     }
 
