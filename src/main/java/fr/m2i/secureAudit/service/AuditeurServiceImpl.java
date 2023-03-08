@@ -41,7 +41,6 @@ public class AuditeurServiceImpl implements AuditeurService {
     }
 
     @Override
-    //@Transactional
     public Auditeur createAuditeur(Auditeur auditeur) {
         return auditeurRepository.save(auditeur);
     }

@@ -18,7 +18,7 @@ public class CategorieController {
 
     @GetMapping("/get/{id_categorie}")
     public ResponseEntity<Categorie> getCategorieById(@PathVariable int id_categorie) {
-        Categorie categorie = categorieService.findById(id_categorie);
+        Categorie categorie = categorieService.getById(id_categorie);
         if (categorie != null) {
             return ResponseEntity.ok(categorie);
         } else {
@@ -28,7 +28,7 @@ public class CategorieController {
 
     @GetMapping("/get")
     public List<Categorie> getAllCategories() {
-        return categorieService.findAll();
+        return categorieService.getCategories();
     }
 
     @PostMapping("/post")
@@ -45,7 +45,7 @@ public class CategorieController {
 
     @DeleteMapping("/del/{id_categorie}")
     public ResponseEntity<Void> deleteCategorie(@PathVariable int id_categorie) {
-        categorieService.delete(id_categorie);
+        categorieService.deleteById(id_categorie);
         return ResponseEntity.noContent().build();
     }
 }

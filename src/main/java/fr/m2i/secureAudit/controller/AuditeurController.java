@@ -3,7 +3,6 @@ package fr.m2i.secureAudit.controller;
 import fr.m2i.secureAudit.model.Auditeur;
 import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,11 +33,6 @@ public class AuditeurController {
         return ResponseEntity.ok().body(auditeur);
     }
 
-//    @PostMapping("/post")
-//    public ResponseEntity<Auditeur> createAuditeur(@RequestBody Auditeur auditeur) {
-//        Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
-//        return new ResponseEntity<>(createdAuditeur, HttpStatus.CREATED);
-//    }
     @PostMapping("/post")
     public String createAuditeur(@RequestBody Auditeur auditeur) {
         Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
