@@ -54,6 +54,40 @@ document
       .catch((error) => console.error(error));
   });
 
+// UPDATE
+const formUpdate = document.querySelector("#put_form_auditeurs");
+formUpdate.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const auditeurId = document.querySelector("#id_auditeur_put").value;
+
+  const civilite = document.querySelector("input[name=civilite]:checked").value;
+  const nom = document.querySelector("#nom").value;
+  const prenom = document.querySelector("#prenom").value;
+
+  const dataUpdated = {
+    id_auditeur: auditeurId,
+    civilite: civilite,
+    nom: nom,
+    prenom: prenom,
+  };
+
+  let headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  fetch(`http://localhost:8080/auditeur/put/${auditeurId}`, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify(dataUpdated),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
 // DELETE
 const formDel = document.getElementById("del_form_auditeurs");
 
