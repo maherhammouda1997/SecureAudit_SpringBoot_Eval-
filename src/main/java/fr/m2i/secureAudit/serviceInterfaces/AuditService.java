@@ -9,10 +9,10 @@ public interface AuditService {
 
     List<Audit> getAudit();
 
-    String addAudit(Audit audit, int id_industrie, int id_auditeur);
+    Audit addAudit(Audit audit, int id_industrie, int id_auditeur);
 
     String update(Audit audit, int new_id_industrie, int new_id_auditeur);
 
-    void delete(int id_audit);
+    boolean delete(int id_audit);
 }
 

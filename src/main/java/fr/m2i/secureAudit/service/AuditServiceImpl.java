@@ -35,7 +35,7 @@ public class AuditServiceImpl implements AuditService {
 
     @Override
     @Transactional
-    public String addAudit(Audit audit, int id_industrie, int id_auditeur) {
+    public Audit addAudit(Audit audit, int id_industrie, int id_auditeur) {
         Industrie industrie = entityManager.find(Industrie.class, id_industrie);
         if (industrie == null) {
             throw new IllegalArgumentException("Invalid industry ID: " + id_industrie);
@@ -51,9 +51,8 @@ public class AuditServiceImpl implements AuditService {
             throw new IllegalArgumentException("duree doit etre inferieure a 4 jours");
         }
         entityManager.persist(audit);
-        return "Audit added successfully";
+        return audit;
     }
-
 
     @Override
     @Transactional
@@ -78,8 +77,12 @@ public class AuditServiceImpl implements AuditService {
     }
 
     @Override
-    public void delete(int id_audit) {
-        auditRepository.deleteById(id_audit);
+    public boolean delete(int id_audit) {
+        if (auditRepository.existsById(id_audit)) {
+            auditRepository.deleteById(id_audit);
+            return true;
+        }
+        return false;
     }
 }
 
