@@ -13,6 +13,6 @@ public interface IndustrieService {
 
     void update(int id_industrie, Industrie industrie);
 
-    void delete(int id_industrie);
+    boolean delete(int id_industrie);
 }
 
