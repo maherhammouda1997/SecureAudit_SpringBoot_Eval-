@@ -20,37 +20,53 @@ public class IndustrieController {
         this.industrieService = industrieService;
     }
 
-    @GetMapping("/get/{id_industrie}")
-    public ResponseEntity<Industrie> findById(@PathVariable int id_industrie) {
-        Industrie industrie = industrieService.findById(id_industrie);
-        if (industrie == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(industrie, HttpStatus.OK);
-    }
-
     @GetMapping("/get")
     public ResponseEntity<List<Industrie>> findAll() {
         List<Industrie> industries = industrieService.findAll();
         return new ResponseEntity<>(industries, HttpStatus.OK);
     }
 
+    @GetMapping("/get/{id_industrie}")
+    public ResponseEntity<?> findById(@PathVariable int id_industrie) {
+        Industrie industrie = industrieService.findById(id_industrie);
+        if (industrie == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("industrie not found");
+        }
+        return ResponseEntity.ok(industrie);
+    }
+
     @PostMapping("/post")
-    public ResponseEntity<Void> save(@RequestBody Industrie industrie) {
-        industrieService.save(industrie);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> save(@RequestBody Industrie industrie) {
+        try {
+            industrieService.save(industrie);
+            return new ResponseEntity<>("Industrie added successfully", HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/put/{id_industrie}")
-    public ResponseEntity<Void> update(@PathVariable int id_industrie, @RequestBody Industrie industrie) {
-        industrieService.update(id_industrie, industrie);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<?> update(@PathVariable int id_industrie, @RequestBody Industrie industrie) {
+        try {
+            Industrie existingIndustrie = industrieService.findById(id_industrie);
+            if (existingIndustrie == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("industrie not found");
+            }
+            industrieService.update(id_industrie, industrie);
+            return ResponseEntity.status(HttpStatus.OK).body("industrie updated successfully");
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/del/{id_industrie}")
-    public ResponseEntity<Void> delete(@PathVariable int id_industrie) {
-        industrieService.delete(id_industrie);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<String> delete(@PathVariable int id_industrie) {
+        boolean isDeleted = industrieService.delete(id_industrie);
+        if (isDeleted) {
+            String message = "industrie deleted successfully";
+            return ResponseEntity.ok(message);
+        } else
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("industrie not found");
     }
 }
 

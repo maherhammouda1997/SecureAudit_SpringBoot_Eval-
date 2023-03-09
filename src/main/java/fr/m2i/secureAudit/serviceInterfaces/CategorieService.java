@@ -1,7 +1,6 @@
 package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Categorie;
-import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -13,9 +12,8 @@ public interface CategorieService {
 
     void save(Categorie categorie);
 
-    @Transactional
-    void update(int id_categorie, Categorie categorie);
+    boolean update(int id_categorie, Categorie categorie);
 
-    void deleteById(int id_categorie);
+    boolean deleteById(int id_categorie);
 }
 

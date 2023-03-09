@@ -45,20 +45,25 @@ public class AuditeurServiceImpl implements AuditeurService {
     }
 
     @Override
-    @Transactional
-    public void update(int id_auditeur, Auditeur auditeur) {
+    public boolean update(int id_auditeur, Auditeur auditeur) {
         Auditeur existingAuditeur = auditeurRepository.findById(id_auditeur).orElse(null);
         if (existingAuditeur != null) {
             existingAuditeur.setCivilite(auditeur.getCivilite());
             existingAuditeur.setNom(auditeur.getNom());
             existingAuditeur.setPrenom(auditeur.getPrenom());
             auditeurRepository.save(existingAuditeur);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void deleteById(int id_auditeur) {
-        auditeurRepository.deleteById(id_auditeur);
+    public boolean deleteById(int id_auditeur) {
+        if (auditeurRepository.existsById(id_auditeur)) {
+            auditeurRepository.deleteById(id_auditeur);
+            return true;
+        }
+        return false;
     }
 }
 

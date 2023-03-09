@@ -60,15 +60,18 @@ public class FraisServiceImpl implements FraisService {
             existingFrais.setEst_rembourse(frais.getEst_rembourse());
             existingFrais.setAudit(frais.getAudit());
             existingFrais.setCategorie(frais.getCategorie());
-           // existingFrais.setAuditeur(frais.getAuditeur());
             entityManager.merge(existingFrais);
         }
         return  "frais updated successfully";
     }
 
     @Override
-    public void delete(int id_frais) {
-        fraisRepository.deleteById(id_frais);
+    public boolean delete(int id_frais) {
+        if (fraisRepository.existsById(id_frais)) {
+            fraisRepository.deleteById(id_frais);
+            return true;
+        }
+        return false;
     }
 }
 
