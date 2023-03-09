@@ -9,10 +9,10 @@ public class Industrie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_industrie;
 
-    @Column(name = "numero_siret")
+    @Column(name = "numero_siret", nullable = false)
     private Long numero_siret;
 
-    @Column(name = "raison_sociale")
+    @Column(name = "raison_sociale", nullable = false)
     private String raison_sociale;
 
     public Industrie() {}
@@ -20,7 +20,6 @@ public class Industrie {
     public Industrie(long numero_Siret, String raison_sociale) {
         this.numero_siret = numero_siret;
         this.raison_sociale = raison_sociale;
-        //this.auditeur = auditeur;
     }
 
     public int getId_industrie() {

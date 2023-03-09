@@ -26,11 +26,17 @@ public class CategorieServiceImpl implements CategorieService {
 
     @Override
     public void save(Categorie categorie) {
+        if (categorie.getLibelle() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         categorieRepository.save(categorie);
     }
 
     @Override
     public boolean update(int id_categorie, Categorie categorie) {
+        if (categorie.getLibelle() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Categorie existingCategorie = categorieRepository.findById(id_categorie).orElse(null);
         if (existingCategorie != null) {
             existingCategorie.setLibelle(categorie.getLibelle());

@@ -9,13 +9,13 @@ public class Auditeur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_auditeur;
 
-    @Column(name = "civilite")
+    @Column(name = "civilite", nullable = false, length = 3)
     private String civilite;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false)
     private String nom;
 
-    @Column(name = "prenom")
+    @Column(name = "prenom", nullable = false)
     private String prenom;
 
     public Auditeur() {};

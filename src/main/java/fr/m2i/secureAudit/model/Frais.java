@@ -10,18 +10,20 @@ public class Frais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_frais;
 
+    @Column(name = "date_debut_frais", nullable = false)
     private Date date_debut_frais;
 
+    @Column(name = "montant", nullable = false)
     private int montant;
-
+    @Column(name = "est_rembourse", nullable = false)
     private Boolean est_rembourse;
 
     @ManyToOne
-    @JoinColumn(name = "id_audit")
+    @JoinColumn(name = "id_audit", nullable = false)
     private Audit audit;
 
     @ManyToOne
-    @JoinColumn(name = "id_categorie")
+    @JoinColumn(name = "id_categorie", nullable = false)
     private Categorie categorie;
 
     public Frais() {}

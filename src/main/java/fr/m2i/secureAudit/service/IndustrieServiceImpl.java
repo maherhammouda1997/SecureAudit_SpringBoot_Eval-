@@ -31,6 +31,9 @@ public class IndustrieServiceImpl implements IndustrieService {
     }
 
     public void save(Industrie industrie) {
+        if (industrie.getRaison_sociale() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Long siret = industrie.getNumero_siret();
         String siretString = String.valueOf(siret);
         if (siretString.length() == 14) {
@@ -42,6 +45,9 @@ public class IndustrieServiceImpl implements IndustrieService {
 
     @Override
     public void update(int id_industrie, Industrie industrie) {
+        if (industrie.getRaison_sociale() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Industrie existingIndustrie = industrieRepository.findById(id_industrie).orElse(null);
         if (existingIndustrie != null) {
             Long siret = industrie.getNumero_siret();

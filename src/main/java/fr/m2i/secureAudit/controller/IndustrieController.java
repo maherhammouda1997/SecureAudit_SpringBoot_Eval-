@@ -65,7 +65,7 @@ public class IndustrieController {
         if (isDeleted) {
             String message = "industrie deleted successfully";
             return ResponseEntity.ok(message);
-        } else
+        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("industrie not found");
     }
 }

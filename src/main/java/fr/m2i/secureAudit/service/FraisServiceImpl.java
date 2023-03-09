@@ -35,6 +35,10 @@ public class FraisServiceImpl implements FraisService {
     @Override
     @Transactional
     public String addFrais(Frais frais, int id_audit, int id_categorie) {
+        if (frais.getDate_debut_frais() == null || frais.getMontant() == 0 ||
+                frais.getEst_rembourse() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Audit audit = entityManager.find(Audit.class, id_audit);
         if (audit == null) {
             throw new IllegalArgumentException("Invalid audit ID: " + id_audit);
@@ -53,6 +57,11 @@ public class FraisServiceImpl implements FraisService {
     @Override
     @Transactional
     public String update(int id_frais, Frais frais) {
+        if (frais.getDate_debut_frais() == null || frais.getMontant() == 0 ||
+                frais.getEst_rembourse() == null || frais.getAudit() == null
+                || frais.getCategorie() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Frais existingFrais = entityManager.find(Frais.class, id_frais);
         if (existingFrais != null) {
             existingFrais.setDate_debut_frais(frais.getDate_debut_frais());

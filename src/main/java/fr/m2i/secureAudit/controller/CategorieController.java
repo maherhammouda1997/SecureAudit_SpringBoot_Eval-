@@ -34,9 +34,9 @@ public class CategorieController {
     @PostMapping("/post")
     public ResponseEntity<String> createCategorie(@RequestBody Categorie categorie) {
         try {
-            if (categorie.getLibelle() == null) {
-                return ResponseEntity.badRequest().body("bad request :( ");
-            }
+//            if (categorie.getLibelle() == null) {
+//                return ResponseEntity.badRequest().body("bad request :( ");
+//            }
             categorieService.save(categorie);
             return ResponseEntity.status(HttpStatus.CREATED).body("categorie added");
         } catch (IllegalArgumentException e) {

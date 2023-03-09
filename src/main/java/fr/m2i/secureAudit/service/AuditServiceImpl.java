@@ -36,6 +36,10 @@ public class AuditServiceImpl implements AuditService {
     @Override
     @Transactional
     public Audit addAudit(Audit audit, int id_industrie, int id_auditeur) {
+        if (audit.getDate_debut() == null || audit.getDuree() == 0 ||
+                audit.getCout_jour() == 0 || audit.getCout_total() == 0) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         Industrie industrie = entityManager.find(Industrie.class, id_industrie);
         if (industrie == null) {
             throw new IllegalArgumentException("Invalid industry ID: " + id_industrie);
@@ -57,6 +61,11 @@ public class AuditServiceImpl implements AuditService {
     @Override
     @Transactional
     public String update(Audit audit, int id_industrie, int id_auditeur) {
+        if (audit.getDate_debut() == null || audit.getDuree() == 0 ||
+                audit.getCout_jour() == 0 || audit.getCout_total() == 0
+                || audit.getIndustrie() == null || audit.getAuditeur() == null) {
+            throw new IllegalArgumentException("All fields are required.");
+        }
         entityManager.createNativeQuery("UPDATE audit " +
                         "SET date_debut = :date_debut, " +
                         "duree = :duree, " +

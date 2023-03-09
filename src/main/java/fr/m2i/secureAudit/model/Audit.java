@@ -10,24 +10,24 @@ public class Audit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_audit;
 
-    @Column(name = "date_debut")
+    @Column(name = "date_debut", nullable = false)
     private Date date_debut;
 
-    @Column(name = "duree")
+    @Column(name = "duree", nullable = false)
     private int duree;
 
-    @Column(name = "cout_jour")
+    @Column(name = "cout_jour", nullable = false)
     private int cout_jour;
 
-    @Column(name = "cout_total")
+    @Column(name = "cout_total", nullable = false)
     private int cout_total;
 
     @ManyToOne
-    @JoinColumn(name = "id_industrie")
+    @JoinColumn(name = "id_industrie", nullable = false)
     private Industrie industrie;
 
     @ManyToOne
-    @JoinColumn(name = "id_auditeur")
+    @JoinColumn(name = "id_auditeur", nullable = false)
     private Auditeur auditeur;
 
     public Audit() {}

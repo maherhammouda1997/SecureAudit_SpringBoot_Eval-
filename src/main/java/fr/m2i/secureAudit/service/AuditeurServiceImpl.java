@@ -41,11 +41,25 @@ public class AuditeurServiceImpl implements AuditeurService {
 
     @Override
     public Auditeur createAuditeur(Auditeur auditeur) {
+        if (auditeur.getCivilite() == null || auditeur.getNom() == null ||
+            auditeur.getPrenom() == null) {
+            throw new IllegalArgumentException("All fields (civilite, nom, prenom) are required.");
+        }
+        if (auditeur.getCivilite().length() > 3) {
+            throw new IllegalArgumentException("Civilite must be no more than 3 characters long.");
+        }
         return auditeurRepository.save(auditeur);
     }
 
     @Override
     public boolean update(int id_auditeur, Auditeur auditeur) {
+        if (auditeur.getCivilite() == null || auditeur.getNom() == null ||
+            auditeur.getPrenom() == null) {
+            throw new IllegalArgumentException("All fields (civilite, nom, prenom) are required.");
+        }
+        if (auditeur.getCivilite().length() > 3) {
+            throw new IllegalArgumentException("Civilite must be no more than 3 characters long.");
+        }
         Auditeur existingAuditeur = auditeurRepository.findById(id_auditeur).orElse(null);
         if (existingAuditeur != null) {
             existingAuditeur.setCivilite(auditeur.getCivilite());
