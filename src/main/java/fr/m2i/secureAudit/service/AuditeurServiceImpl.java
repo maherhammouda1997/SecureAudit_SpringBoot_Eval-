@@ -45,7 +45,6 @@ public class AuditeurServiceImpl implements AuditeurService {
     }
 
     @Override
-    @Transactional
     public boolean update(int id_auditeur, Auditeur auditeur) {
         Auditeur existingAuditeur = auditeurRepository.findById(id_auditeur).orElse(null);
         if (existingAuditeur != null) {

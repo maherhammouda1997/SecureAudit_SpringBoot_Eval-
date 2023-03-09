@@ -40,23 +40,31 @@ public class AuditeurController {
 
     @PostMapping("/post")
     public ResponseEntity<String> createAuditeur(@RequestBody Auditeur auditeur) {
-        Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
-        if (createdAuditeur == null) {
-            return new ResponseEntity<>("Error, bad request ! :( ", HttpStatus.BAD_REQUEST);
-        } else {
-            return new ResponseEntity<>("new Auditeur added", HttpStatus.CREATED);
+        try {
+            Auditeur createdAuditeur = auditeurService.createAuditeur(auditeur);
+            if (createdAuditeur == null) {
+                return new ResponseEntity<>("Error, bad request ! :( ", HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>("new Auditeur added", HttpStatus.CREATED);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PutMapping("/put/{id_auditeur}")
     public ResponseEntity<String> updateAuditeur(@PathVariable("id_auditeur") int id_auditeur, @RequestBody Auditeur auditeur) {
-        boolean updatedAuditeur = auditeurService.update(id_auditeur, auditeur);
-        if (!updatedAuditeur ) {
-            String message = "Auditeur with ID " + id_auditeur + " not found.";
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
-        } else {
-            String message = "Auditeur updated successfully";
-            return ResponseEntity.status(HttpStatus.OK).body(message);
+        try {
+            boolean updatedAuditeur = auditeurService.update(id_auditeur, auditeur);
+            if (!updatedAuditeur) {
+                String message = "Auditeur with ID " + id_auditeur + " not found.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            } else {
+                String message = "Auditeur updated successfully";
+                return ResponseEntity.status(HttpStatus.OK).body(message);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

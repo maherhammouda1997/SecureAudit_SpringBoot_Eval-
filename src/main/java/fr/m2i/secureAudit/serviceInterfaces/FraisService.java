@@ -13,6 +13,6 @@ public interface FraisService {
 
     String update(int id_frais, Frais frais);
 
-    void delete(int id_frais);
+    boolean delete(int id_frais);
 }
 

@@ -3,7 +3,6 @@ package fr.m2i.secureAudit.service;
 import fr.m2i.secureAudit.model.Categorie;
 import fr.m2i.secureAudit.repository.CategorieRepository;
 import fr.m2i.secureAudit.serviceInterfaces.CategorieService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,18 +30,23 @@ public class CategorieServiceImpl implements CategorieService {
     }
 
     @Override
-    @Transactional
-    public void update(int id_categorie, Categorie categorie) {
+    public boolean update(int id_categorie, Categorie categorie) {
         Categorie existingCategorie = categorieRepository.findById(id_categorie).orElse(null);
         if (existingCategorie != null) {
             existingCategorie.setLibelle(categorie.getLibelle());
             categorieRepository.save(existingCategorie);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void deleteById(int id_categorie) {
-        categorieRepository.deleteById(id_categorie);
+    public boolean deleteById(int id_categorie) {
+        if (categorieRepository.existsById(id_categorie)) {
+            categorieRepository.deleteById(id_categorie);
+            return true;
+        }
+        return false;
     }
 }
 
