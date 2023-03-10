@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController //cette annotation indique que la classe est un contrôleur qui gère les requêtes web et renvoie des réponses HTTP.
 @RequestMapping("/auditeur") //cette annotation indique que toutes les requêtes pour cette classe seront gérées par la route "/auditeur".
-//@CrossOrigin //cette annotation permet d'autoriser les requêtes HTTP provenant de sources autres que le serveur sur lequel est déployée l'application
+@CrossOrigin //cette annotation permet d'autoriser les requêtes HTTP provenant de sources autres que le serveur sur lequel est déployée l'application
 public class AuditeurController {
 
     @Autowired //cette annotation permet d'injecter automatiquement une instance de la classe AuditeurService dans le contrôleur
