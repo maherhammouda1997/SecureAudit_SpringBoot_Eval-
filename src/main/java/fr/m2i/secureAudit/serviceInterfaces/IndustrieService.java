@@ -1,8 +1,9 @@
-package fr.m2i.secureAudit.service;
+package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Industrie;
 import java.util.List;
 
+// préparation des méthodes CRUD pour Industrie
 public interface IndustrieService {
 
     Industrie findById(int id_industrie);
@@ -13,6 +14,6 @@ public interface IndustrieService {
 
     void update(int id_industrie, Industrie industrie);
 
-    void delete(int id_industrie);
+    boolean delete(int id_industrie);
 }
 

@@ -3,56 +3,53 @@ package fr.m2i.secureAudit.model;
 import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "frais")
+@Entity // Annotation indiquant que cette classe est une entité JPA (Java Persistence API) qui peut être stockée en base de données
+@Table(name = "frais") // Annotation permettant de spécifier le nom de la table correspondant à cette entité dans la base de données
 public class Frais {
+    @Id // Annotation indiquant que ce champ est une clé primaire
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Annotation permettant de générer automatiquement la valeur de la clé primaire
+    private int id_frais; // Champ représentant l'identifiant du frais
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_frais;
+    @Column(name = "date_debut_frais", nullable = false) // Annotation permettant de spécifier les attributs de la colonne correspondante dans la base de données
+    private Date date_debut_frais; // Champ représentant la date de début du frais
 
-    private Date date_debut_frais;
+    @Column(name = "montant", nullable = false) // Annotation permettant de spécifier les attributs de la colonne correspondante dans la base de données
+    private int montant; // Champ représentant le montant du frais
 
-    private int montant;
+    @Column(name = "est_rembourse", nullable = false) // Annotation permettant de spécifier les attributs de la colonne correspondante dans la base de données
+    private Boolean est_rembourse; // Champ représentant si le frais a été remboursé ou non
 
-    private Boolean est_rembourse;
+    @ManyToOne // Annotation permettant de spécifier la relation entre deux entités
+    @JoinColumn(name = "id_audit", nullable = false) // Annotation permettant de spécifier la clé étrangère correspondant à la relation
+    private Audit audit; // Champ représentant l'audit associé au frais
 
-    @ManyToOne
-    @JoinColumn(name = "id_audit")
-    private Audit audit;
-
-    @ManyToOne
-    @JoinColumn(name = "id_categorie")
-    private Categorie categorie;
-
-    @ManyToOne
-    @JoinColumn(name = "id_auditeur")
-    private Auditeur auditeur;
+    @ManyToOne // Annotation permettant de spécifier la relation entre deux entités
+    @JoinColumn(name = "id_categorie", nullable = false) // Annotation permettant de spécifier la clé étrangère correspondant à la relation
+    private Categorie categorie; // Champ représentant la catégorie du frais
 
     public Frais() {}
 
-    public Frais(Date date_debut_frais, int montant, Boolean est_rembourse, Audit audit, Categorie categorie, Auditeur auditeur){
+    public Frais(Date date_debut_frais, int montant, Boolean est_rembourse, Audit audit, Categorie categorie){
         this.date_debut_frais = date_debut_frais;
         this.montant = montant;
         this.est_rembourse = est_rembourse;
         this.audit = audit;
         this.categorie = categorie;
-        this.auditeur = auditeur;
     }
 
-    public int getIdFrais() {
+    public int getId_frais() {
         return id_frais;
     }
 
-    public void setIdFrais(int id_frais) {
+    public void setId_frais(int id_frais) {
         this.id_frais = id_frais;
     }
 
-    public Date getDateDebutFrais() {
+    public Date getDate_debut_frais() {
         return date_debut_frais;
     }
 
-    public void setDateDebutFrais(Date dateDebutFrais) {
+    public void setDate_debut_frais(Date date_debut_frais) {
         this.date_debut_frais = date_debut_frais;
     }
 
@@ -64,11 +61,11 @@ public class Frais {
         this.montant = montant;
     }
 
-    public Boolean getEstRembourse() {
+    public Boolean getEst_rembourse() {
         return est_rembourse;
     }
 
-    public void setEstRembourse(Boolean est_rembourse) {
+    public void setEst_rembourse(Boolean est_rembourse) {
         this.est_rembourse = est_rembourse;
     }
 
@@ -88,12 +85,5 @@ public class Frais {
         this.categorie = categorie;
     }
 
-    public Auditeur getAuditeur() {
-        return auditeur;
-    }
-
-    public void setAuditeur(Auditeur auditeur) {
-        this.auditeur = auditeur;
-    }
 }
 

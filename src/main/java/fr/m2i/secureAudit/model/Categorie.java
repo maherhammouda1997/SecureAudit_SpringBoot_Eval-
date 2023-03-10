@@ -2,16 +2,16 @@ package fr.m2i.secureAudit.model;
 
 import jakarta.persistence.*;
 
-
-@Entity
-@Table(name = "categorie")
+@Entity // Cette annotation indique que la classe Categorie est une entité JPA.
+@Table(name = "categorie") // Cette annotation indique que la table correspondant à cette entité s'appelle "categorie".
 public class Categorie {
+    @Id // Cette annotation indique que l'attribut "id_categorie" est la clé primaire de la table.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Cette annotation indique que la valeur de l'attribut "id_categorie" sera auto-générée par la base de données.
+    private int id_categorie; // Cet attribut représente l'identifiant unique de la catégorie.
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_categorie;
-
-    private String libelle;
+    @Column(name = "libelle", nullable = false)
+    // Cette annotation indique que cet attribut est mappé à la colonne "libelle" de la table "categorie", et qu'il ne peut pas être nul.
+    private String libelle; // Cet attribut représente le libellé de la catégorie.
 
     public Categorie() {}
 
@@ -19,12 +19,12 @@ public class Categorie {
         this.libelle = libelle;
     }
 
-    public int getIdCategorie() {
+    public int getId_categorie() {
         return id_categorie;
     }
 
-    public void setIdCategorie(int idCategorie) {
-        this.id_categorie = idCategorie;
+    public void setId_categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
     }
 
     public String getLibelle() {

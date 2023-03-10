@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API CRUD SPRING BOOT</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- SMOOTH SCROLL -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 1300, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="flex-container">
+        <!-- HEADER -->
+        <div id="header_page">
+            <!-- Titre -->
+            <div>
+                <h1>Formulaires API CRUD</h1>
+            </div>
+
+            <!-- Barre de navigation -->
+            <div id="navbar">
+                <ul>
+                    <li><a class="active" href="#auditeurs">Auditeurs</a></li>
+                    <li><a href="#audits">Audits</a></li>
+                    <li><a href="#frais">Frais</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MAIN SECTION -->
+        <div id="main_page">
+            <!-- ------------------------------------------------------------------ -->
+            <!--                     FORMULAIRES AUDITEURS                          -->
+            <!-- ------------------------------------------------------------------ -->
+            <div class="forms_section" id="auditeurs">
+                <h2>AUDITEURS</h2>
+                <div class="forms">
+                    <div class="form_post_section">
+                        <!-- Formulaire POST -->
+                        <div class="form form_post">
+                            <h3>POST</h3>
+                            <form id="post_form_auditeurs" action="http://localhost:8080/auditeur/post" method="POST">
+                                <label>Civilité :</label>
+                                <div class="civilite_section">
+                                    <div>
+                                        <label for="civilite_mr">M.</label>
+                                    </div>
+                                    <div class="input_checkbox">
+                                        <input class="radiooValue" type="radio" name="civilite" value="M."
+                                            id="civilite_mr_post">
+                                        <!-- <input type="checkbox" id="civilite_mr_post" name="civilite" value="M." /> -->
+                                    </div>
+                                    <div>
+                                        <label for="civilite_mme">Mme</label>
+                                    </div>
+                                    <div class="input_checkbox">
+                                        <input class="radiooValue" type="radio" name="civilite" value="Mme"
+                                            id="civilite_mme_post">
+                                        <!-- <input type="checkbox" id="civilite_mme_post" name="civilite" value="Mme" /> -->
+                                    </div>
+                                </div>
+
+                                <!-- <label>Civilité :</label>
+                                <select id="civilite_post" name="civilite">
+                                    <option value="M.">M.</option>
+                                    <option value="Mme">Mme</option>
+                                </select> -->
+
+                                <label for="nom">Nom :</label>
+                                <input type="text" id="nom_post" name="nom">
+
+                                <label for="prenom">Prénom :</label>
+                                <input type="text" id="prenom_post" name="prenom">
+
+                                <div class="submit">
+                                    <button class="btn_post" type="submit">Ajouter un auditeur</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <div class="forms_get_section">
+                        <!-- Formulaire GET ALL -->
+                        <div class="form form_get_all">
+                            <h3>GET ALL</h3>
+                            <form id="get_all_form_auditeurs" action="http://localhost:8080/auditeur/get" method="GET">
+                                <div class="submit">
+                                    <button class="btn_get" type="submit">Afficher tous les auditeurs</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Formulaire GET BY ID -->
+                        <div class="form form_get_by_id">
+                            <h3>GET BY ID</h3>
+                            <form id="get_by_id_form_auditeurs"
+                                action="http://localhost:8080/auditeur/get/{id_auditeur}" method="GET">
+                                <label for="id_auditeur_get_by_id_auditeur">ID de l'auditeur :</label>
+                                <input type="number" id="id_auditeur_get_by_id_auditeur"
+                                    name="id_auditeur_get_by_id_auditeur" required>
+
+                                <div class="submit">
+                                    <button class="btn_get" type="submit">Afficher l'auditeur</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form_put_section">
+                        <!-- Formulaire PUT -->
+                        <div class="form form_put">
+                            <h3>UPDATE</h3>
+                            <form id="put_form_auditeurs" action="" method="POST">
+                                <label for="id_auditeur_put">ID de l'auditeur :</label>
+                                <input type="number" id="id_auditeur_put" name="id_auditeur" required>
+
+                                <label>Civilité :</label>
+                                <div class="civilite_section">
+                                    <div>
+                                        <label for="civilite_mr">M.</label>
+                                    </div>
+                                    <div class="input_checkbox">
+                                        <input class="radiooValue" type="radio" name="civilite" value="M."
+                                            id="civilite_mr_post">
+                                        <!-- <input type="checkbox" id="civilite_mr_post" name="civilite" value="M." /> -->
+                                    </div>
+                                    <div>
+                                        <label for="civilite_mme">Mme</label>
+                                    </div>
+                                    <div class="input_checkbox">
+                                        <input class="radiooValue" type="radio" name="civilite" value="Mme"
+                                            id="civilite_mme_post">
+                                        <!-- <input type="checkbox" id="civilite_mme_post" name="civilite" value="Mme" /> -->
+                                    </div>
+                                </div>
+
+                                <label for="nom">Nom :</label>
+                                <input type="text" id="nom" name="nom">
+
+                                <label for="prenom">Prénom :</label>
+                                <input type="text" id="prenom" name="prenom">
+
+                                <div class="submit">
+                                    <button class="btn_put" type="submit">Modifier l'auditeur</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form_del_section">
+                        <!-- Formulaire DEL -->
+                        <div class="form form_del">
+                            <h3>DELETE</h3>
+                            <form id="del_form_auditeurs" action="http://localhost:8080/auditeur/del/{id_auditeur}"
+                                method="POST">
+                                <label for="id_auditeur_del">ID de l'auditeur :</label>
+                                <input type="number" id="id_auditeur_del" name="id_auditeur_del" required>
+
+                                <div class="submit">
+                                    <button class="btn_del" type="submit">Supprimer l'auditeur</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------------------------------------------------------ -->
+            <!--                      FORMULAIRES AUDITS                            -->
+            <!-- ------------------------------------------------------------------ -->
+            <div class="forms_section" id="audits">
+                <h2>AUDITS</h2>
+                <div class="forms">
+                    <div class="form_post_section">
+                        <!-- Formulaire POST -->
+                        <div class="form form_post">
+                            <h3>POST</h3>
+                            <form id="post_form" action="" method="POST">
+                                <label for="date_debut">Date de début :</label>
+                                <input type="date" name="date_debut" id="date_debut_post" required><br><br>
+
+                                <label for="duree">Durée :</label>
+                                <input type="number" name="duree" id="duree_post" required><br><br>
+
+                                <label for="cout_jour">Coût par jour :</label>
+                                <input type="number" name="cout_jour" id="cout_jour_post" step="0.01" required><br><br>
+
+                                <label for="cout_total">Coût total :</label>
+                                <input type="number" name="cout_total" id="cout_total_post" step="0.01"
+                                    required><br><br>
+
+                                <label for="id_industrie">ID de l'industrie :</label>
+                                <input type="number" name="id_industrie" id="id_industrie_post" required><br><br>
+
+                                <label for="id_auditeur">ID de l'auditeur :</label>
+                                <input type="number" name="id_auditeur" id="id_auditeur_post" required><br><br>
+
+                                <div class="submit">
+                                    <button class="btn_post" type="submit">Ajouter un audit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="forms_get_section">
+                        <!-- Formulaire GET ALL -->
+                        <div class="form form_get_all">
+                            <h3>GET ALL</h3>
+                            <form id="get_all_form" action="" method="GET">
+                                <div class="submit">
+                                    <button class="btn_get" type="submit">Afficher tous les audits</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Formulaire GET BY ID -->
+                        <div class="form form_get_by_id">
+                            <h3>GET BY ID</h3>
+                            <form id="get_by_id_form" action="" method="GET">
+                                <label for="id_auditeur">ID de l'audit :</label>
+                                <input type="number" id="id_auditeur_get_by_id_audit" name="id_auditeur" required>
+
+                                <div class="submit">
+                                    <button class="btn_get" type="submit">Afficher l'audit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form_put_section">
+                        <!-- Formulaire PUT -->
+                        <div class="form form_put">
+                            <h3>UPDATE</h3>
+                            <form id="put_form" action="" method="POST">
+                                <label for="id_auditeur">ID de l'audit :</label>
+                                <input type="number" id="id_auditeur_put_audit" name="id_auditeur" required>
+
+                                <label for="date_debut">Date de début :</label>
+                                <input type="date" name="date_debut" id="date_debut" required><br><br>
+
+                                <label for="duree">Durée :</label>
+                                <input type="number" name="duree" id="duree" required><br><br>
+
+                                <label for="cout_jour">Coût par jour :</label>
+                                <input type="number" name="cout_jour" id="cout_jour" step="0.01" required><br><br>
+
+                                <label for="cout_total">Coût total :</label>
+                                <input type="number" name="cout_total" id="cout_total" step="0.01" required><br><br>
+
+                                <label for="id_industrie">ID de l'industrie :</label>
+                                <input type="number" name="id_industrie" id="id_industrie" required><br><br>
+
+                                <label for="id_auditeur">ID de l'auditeur :</label>
+                                <input type="number" name="id_auditeur" id="id_auditeur_fk_put_audit" required><br><br>
+
+                                <div class="submit">
+                                    <button class="btn_put" type="submit">Modfier l'audit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form_del_section">
+                        <!-- Formulaire DEL -->
+                        <div class="form form_del">
+                            <h3>DELETE</h3>
+                            <form id="del_form" action="" method="POST">
+                                <label for="id_auditeur">ID de l'audit :</label>
+                                <input type="number" id="id_auditeur" name="id_auditeur" required>
+
+                                <div class="submit">
+                                    <button class="btn_del" type="submit">Supprimer l'audit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
