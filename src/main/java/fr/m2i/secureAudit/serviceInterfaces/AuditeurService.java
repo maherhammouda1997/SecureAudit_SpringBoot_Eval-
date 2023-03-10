@@ -4,6 +4,7 @@ import fr.m2i.secureAudit.model.Auditeur;
 
 import java.util.List;
 
+// préparation des méthodes CRUD pour Auditeur
 public interface AuditeurService {
 
     Auditeur rechercheById(int id_auditeur);

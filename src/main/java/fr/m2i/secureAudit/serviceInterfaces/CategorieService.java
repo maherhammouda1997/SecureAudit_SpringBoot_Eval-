@@ -1,9 +1,9 @@
 package fr.m2i.secureAudit.serviceInterfaces;
 
 import fr.m2i.secureAudit.model.Categorie;
-
 import java.util.List;
 
+// préparation des méthodes CRUD pour Categorie
 public interface CategorieService {
 
     Categorie getById(int id_categorie);

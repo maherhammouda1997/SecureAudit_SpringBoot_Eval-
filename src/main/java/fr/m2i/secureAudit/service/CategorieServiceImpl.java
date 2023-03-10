@@ -14,16 +14,20 @@ public class CategorieServiceImpl implements CategorieService {
     @Autowired
     private CategorieRepository categorieRepository;
 
+    // Retourne toutes les catégories dans la base de données
     @Override
     public List<Categorie> getCategories() {
         return categorieRepository.findAll();
     }
 
+    // Retourne la catégorie correspondant à l'id donné en entrée
     @Override
     public Categorie getById(int id_categorie) {
         return categorieRepository.findById(id_categorie).orElse(null);
     }
 
+    // Sauvegarde la catégorie donnée en entrée dans la base de données
+    // Vérifie si le champ "libelle" de la catégorie est renseigné
     @Override
     public void save(Categorie categorie) {
         if (categorie.getLibelle() == null) {
@@ -32,6 +36,8 @@ public class CategorieServiceImpl implements CategorieService {
         categorieRepository.save(categorie);
     }
 
+    // Met à jour la catégorie correspondant à l'id donné en entrée avec les données de la catégorie donnée en entrée
+    // Vérifie si le champ "libelle" de la catégorie est renseigné
     @Override
     public boolean update(int id_categorie, Categorie categorie) {
         if (categorie.getLibelle() == null) {
@@ -46,6 +52,7 @@ public class CategorieServiceImpl implements CategorieService {
         return false;
     }
 
+    // Supprime la catégorie correspondant à l'id donné en entrée de la base de données
     @Override
     public boolean deleteById(int id_categorie) {
         if (categorieRepository.existsById(id_categorie)) {
@@ -54,5 +61,6 @@ public class CategorieServiceImpl implements CategorieService {
         }
         return false;
     }
+
 }
 

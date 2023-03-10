@@ -3,6 +3,7 @@ package fr.m2i.secureAudit.serviceInterfaces;
 import java.util.List;
 import fr.m2i.secureAudit.model.Frais;
 
+// préparation des méthodes CRUD pour Frais
 public interface FraisService {
 
     Frais findById(int id_frais);

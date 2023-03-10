@@ -3,7 +3,7 @@ package fr.m2i.secureAudit.serviceInterfaces;
 import fr.m2i.secureAudit.model.Audit;
 import java.util.List;
 
-// préparation des méthodes CRUD
+// préparation des méthodes CRUD pour Audit
 public interface AuditService {
 
     Audit findById(int id_audit);
