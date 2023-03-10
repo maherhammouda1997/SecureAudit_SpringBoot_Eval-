@@ -3,17 +3,19 @@ package fr.m2i.secureAudit.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "industrie")
+@Table(name = "industrie") // Annotation pour spécifier que cette classe est mappée à une table appelée "industrie" dans la base de données
 public class Industrie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_industrie;
+    @Id // Annotation pour spécifier que cet attribut est la clé primaire de la table
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Annotation pour spécifier que la génération de la valeur de cette clé est gérée par la base de données
+    private int id_industrie; // Attribut pour stocker l'identifiant unique de l'industrie
 
     @Column(name = "numero_siret", nullable = false)
-    private Long numero_siret;
+    // Annotation pour spécifier que cet attribut est mappé à une colonne "numero_siret" dans la table, qui ne peut pas être null
+    private Long numero_siret; // Attribut pour stocker le numéro SIRET de l'industrie
 
     @Column(name = "raison_sociale", nullable = false)
-    private String raison_sociale;
+    // Annotation pour spécifier que cet attribut est mappé à une colonne "raison_sociale" dans la table, qui ne peut pas être null
+    private String raison_sociale; // Attribut pour stocker la raison sociale de l'industrie
 
     public Industrie() {}
 

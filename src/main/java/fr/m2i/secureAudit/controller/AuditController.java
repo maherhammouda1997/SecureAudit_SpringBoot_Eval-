@@ -35,10 +35,12 @@ public class AuditController {
     // Endpoint pour récupérer un audit par son ID
     @GetMapping("/get/{id_audit}")
     public ResponseEntity<?> getAuditById(@PathVariable int id_audit) {
+        // PathVariable : cette annotation permet de récupérer la valeur de la variable "id_audit" de l'URL
         Audit audit = auditService.findById(id_audit);
         if (audit == null) {
             String message = "Audit with ID " + id_audit + " not found.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+            //ResponseEntity : cette classe permet de retourner une réponse HTTP personnalisée avec un corps et un code de statut
         }
         return ResponseEntity.ok(audit);
     }
@@ -46,6 +48,7 @@ public class AuditController {
     // Endpoint pour ajouter un nouvel audit
     @PostMapping("/post/{id_industrie}/{id_auditeur}")
     public ResponseEntity<String> addAudit(@PathVariable int id_industrie, @PathVariable int id_auditeur ,@RequestBody Audit audit) {
+        //RequestBody : cette annotation permet de désérialiser le corps de la requête en un objet Java
         try {
             // Vérifie si l'industrie existe
             Industrie industrie = industrieService.findById(id_industrie);
