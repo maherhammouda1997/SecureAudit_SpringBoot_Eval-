@@ -1,4 +1,9 @@
+/*
+La méthode fetch () permet de récupérer des ressources à travers le réseau de manière asynchrone.
+*/
+
 // POST
+// On récupère le formulaire par son ID
 const form = document.getElementById("post_form_auditeurs");
 
 form.addEventListener("submit", (event) => {
@@ -15,6 +20,8 @@ form.addEventListener("submit", (event) => {
 
   let headers = new Headers();
   headers.append("Content-Type", "application/json");
+
+  // Fetch prend en argument le chemin de la ressource
   fetch("http://localhost:8080/auditeur/post", {
     method: "POST",
     headers: headers,
