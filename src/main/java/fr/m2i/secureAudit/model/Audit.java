@@ -3,34 +3,34 @@ package fr.m2i.secureAudit.model;
 import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "audit")
+@Entity // objet Audit ou en va stocker ou récupérer des données
+@Table(name = "audit") // nom de la table correspondante dans la base de données
 public class Audit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // la propriété id_audit est l'identifiant de l'objet
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // l'autoIncrémentation est assurée par la base de données
     private int id_audit;
 
-    @Column(name = "date_debut", nullable = false)
-    private Date date_debut;
+    @Column(name = "date_debut", nullable = false) // nom de la colonne correspondante dans la base de données et indication qu'elle ne peut pas être nulle
+    private Date date_debut; // date de début de l'audit
 
-    @Column(name = "duree", nullable = false)
-    private int duree;
+    @Column(name = "duree", nullable = false) // nom de la colonne correspondante dans la base de données
+    private int duree; // durée de l'audit en jours
 
-    @Column(name = "cout_jour", nullable = false)
-    private int cout_jour;
+    @Column(name = "cout_jour", nullable = false) // nom de la colonne correspondante dans la base de données
+    private int cout_jour; // coût d'une journée d'audit
 
-    @Column(name = "cout_total", nullable = false)
-    private int cout_total;
+    @Column(name = "cout_total", nullable = false) // nom de la colonne correspondante dans la base de données
+    private int cout_total; // coût total de l'audit
 
-    @ManyToOne
-    @JoinColumn(name = "id_industrie", nullable = false)
-    private Industrie industrie;
+    @ManyToOne // relation many-to-one entre Audit et Industrie (plusieurs audits peuvent être réalisés dans une même industrie)
+    @JoinColumn(name = "id_industrie", nullable = false) // nom de la colonne correspondante dans la base de données
+    private Industrie industrie; // l'industrie dans laquelle l'audit est réalisé
 
-    @ManyToOne
-    @JoinColumn(name = "id_auditeur", nullable = false)
-    private Auditeur auditeur;
+    @ManyToOne // relation many-to-one entre Audit et Auditeur (plusieurs audits peuvent être réalisés par le même auditeur)
+    @JoinColumn(name = "id_auditeur", nullable = false) // nom de la colonne correspondante dans la base de données
+    private Auditeur auditeur; // l'auditeur qui réalise l'audit
 
-    public Audit() {}
+    public Audit() {} //constructeur vide // bonne pratique pour répondre aux exigences de JPA
 
     public Audit(Date date_debut, int duree, int cout_jour, int cout_total, Industrie industrie, Auditeur auditeur) {
         this.date_debut = date_debut ;

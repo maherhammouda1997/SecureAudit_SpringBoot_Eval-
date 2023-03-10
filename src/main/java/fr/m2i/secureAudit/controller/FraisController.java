@@ -1,9 +1,11 @@
 package fr.m2i.secureAudit.controller;
 
 import fr.m2i.secureAudit.model.Audit;
+import fr.m2i.secureAudit.model.Auditeur;
 import fr.m2i.secureAudit.model.Categorie;
 import fr.m2i.secureAudit.model.Frais;
 import fr.m2i.secureAudit.serviceInterfaces.AuditService;
+import fr.m2i.secureAudit.serviceInterfaces.AuditeurService;
 import fr.m2i.secureAudit.serviceInterfaces.CategorieService;
 import fr.m2i.secureAudit.serviceInterfaces.FraisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class FraisController {
     private AuditService auditService;
     @Autowired
     private CategorieService categorieService;
+    @Autowired
+    private AuditeurService auditeurService;
 
     @GetMapping("/get")
     public ResponseEntity<List<Frais>> getAllFrais() {
@@ -98,5 +102,44 @@ public class FraisController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Frais not found");
         }
     }
+
+    @GetMapping("/get/auditeur/{id_auditeur}")
+    public ResponseEntity<?> findFraisByAuditeur(@PathVariable int id_auditeur) {
+        Auditeur auditeur = auditeurService.rechercheById(id_auditeur);
+        if (auditeur == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Auditeur not found !");
+        }
+        List<Frais> fraisList = fraisService.findFraisByAuditeur(id_auditeur);
+        if (fraisList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No frais for this Auditeur!");
+        } else {
+            return ResponseEntity.ok(fraisList);
+        }
+    }
+
+    @GetMapping("/get/audit/{id_audit}")
+    public ResponseEntity<?> findFraisByAudit(@PathVariable int id_audit) {
+        Audit audit = auditService.findById(id_audit);
+        if (audit == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Audit not found !");
+        }
+        List<Frais> fraisList = fraisService.findFraisByAudit(id_audit);
+        if (fraisList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No frais for this Audit!");
+        } else {
+            return ResponseEntity.ok(fraisList);
+        }
+    }
+
+    @GetMapping("/get/categorie/{id_categorie}")
+    public ResponseEntity<?> findFraisByCategorie(@PathVariable int id_categorie) {
+        List<Frais> fraisList = fraisService.findFraisByCategorie(id_categorie);
+        if (fraisList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No frais for this Categorie!");
+        } else {
+            return ResponseEntity.ok(fraisList);
+        }
+    }
+
 }
 

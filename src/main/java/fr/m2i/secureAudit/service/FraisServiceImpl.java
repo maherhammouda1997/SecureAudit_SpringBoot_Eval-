@@ -4,6 +4,8 @@ import fr.m2i.secureAudit.model.*;
 import fr.m2i.secureAudit.repository.FraisRepository;
 import fr.m2i.secureAudit.serviceInterfaces.FraisService;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,5 +84,58 @@ public class FraisServiceImpl implements FraisService {
         }
         return false;
     }
+
+//    @Override
+//    @Transactional
+//    public List<Frais> findFraisByCategorie(int id_categorie) {
+//        String query = "SELECT * FROM frais WHERE id_categorie = :id_categorie";
+//        Query nativeQuery = entityManager.createNativeQuery(query, Frais.class);
+//        nativeQuery.setParameter("id_categorie", id_categorie);
+//        return nativeQuery.getResultList();
+//    }
+//
+//    @Override
+//    @Transactional
+//    public List<Frais> findFraisByAuditeur(int id_auditeur) {
+//        String query = "SELECT f.* FROM frais f INNER JOIN audit a ON f.id_audit = a.id_audit INNER JOIN auditeur au ON a.id_auditeur = au.id_auditeur WHERE au.id_auditeur = :id_auditeur";
+//        Query nativeQuery = entityManager.createNativeQuery(query, Frais.class);
+//        nativeQuery.setParameter("id_auditeur", id_auditeur);
+//        return nativeQuery.getResultList();
+//    }
+//
+//    @Override
+//    @Transactional
+//    public List<Frais> findFraisByAudit(int id_audit) {
+//        String query = "SELECT * FROM frais WHERE id_audit = :id_audit";
+//        Query nativeQuery = entityManager.createNativeQuery(query, Frais.class);
+//        nativeQuery.setParameter("id_audit", id_audit);
+//        return nativeQuery.getResultList();
+//    }
+
+    @Override
+    @Transactional
+    public List<Frais> findFraisByCategorie(int id_categorie) {
+        String query = "SELECT f FROM Frais f WHERE f.categorie.id_categorie = :id_categorie";
+        TypedQuery<Frais> jpqlQuery = entityManager.createQuery(query, Frais.class);
+        jpqlQuery.setParameter("id_categorie", id_categorie);
+        return jpqlQuery.getResultList();
+    }
+    @Override
+    @Transactional
+    public List<Frais> findFraisByAuditeur(int id_auditeur) {
+        String query = "SELECT f FROM Frais f JOIN f.audit a JOIN a.auditeur au WHERE au.id_auditeur = :id_auditeur";
+        TypedQuery<Frais> jpqlQuery = entityManager.createQuery(query, Frais.class);
+        jpqlQuery.setParameter("id_auditeur", id_auditeur);
+        return jpqlQuery.getResultList();
+    }
+    @Override
+    @Transactional
+    public List<Frais> findFraisByAudit(int id_audit) {
+        String query = "SELECT f FROM Frais f WHERE f.audit.id_audit = :id_audit";
+        TypedQuery<Frais> jpqlQuery = entityManager.createQuery(query, Frais.class);
+        jpqlQuery.setParameter("id_audit", id_audit);
+        return jpqlQuery.getResultList();
+    }
+
 }
 

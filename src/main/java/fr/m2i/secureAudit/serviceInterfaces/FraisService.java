@@ -14,5 +14,12 @@ public interface FraisService {
     String update(int id_frais, Frais frais);
 
     boolean delete(int id_frais);
+
+    List<Frais> findFraisByCategorie(int id_categorie);
+
+    List<Frais> findFraisByAuditeur(int id_auditeur);
+
+    List<Frais> findFraisByAudit(int id_audit);
+
 }
 
