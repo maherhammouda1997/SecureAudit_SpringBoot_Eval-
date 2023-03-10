@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f7f7f7;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ******************************************************** */
+/*                          HEADER                          */
+/* ******************************************************** */
+
+#header_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+h1 {
+  margin-top: 20px;
+}
+#navbar {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#navbar li {
+  margin: 0 10px;
+}
+
+#navbar a {
+  display: block;
+  padding: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+#navbar a:hover {
+  background-color: #f76935;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+/*
+#navbar a[href="#audits"]:hover {
+  background-color: #63d290;
+}
+
+#navbar a[href="#frais"]:hover {
+  background-color: #60a8f2;
+}
+
+#navbar a[href="#categories"]:hover {
+  background-color: #fdce5e;
+}
+
+#navbar a[href="#industries"]:hover {
+  background-color: #ee493f;
+}
+*/
+
+#navbar a:focus {
+  outline: none;
+}
+
+#navbar a:active {
+  transform: translateY(0);
+  box-shadow: none;
+  transition: none;
+}
+
+/* ******************************************************** */
+/*                        MAIN PAGE                         */
+/* ******************************************************** */
+
+#main_page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* *** Formulaires  *** */
+
+.forms_section {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms_section > h2 {
+  margin-left: 50px;
+}
+
+.forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.form {
+  background: white;
+  border-radius: 10px;
+  max-width: 420px;
+  margin: 30px;
+  text-align: left;
+  padding: 40px;
+}
+
+.form > h3 {
+  text-align: center;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+.form_post_section,
+.forms_get_section,
+.form_put_section,
+.form_del_section {
+  flex: 100%;
+}
+
+label {
+  color: #000;
+  display: inline-block;
+  margin: 10px auto;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+input,
+select {
+  display: block;
+  padding: 10px 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+}
+
+/* *** BOUTONS  *** */
+
+button {
+  border: 0;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: white;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn_get {
+  background: #63d290;
+}
+
+.btn_post {
+  background: #fdce5e;
+}
+
+.btn_put {
+  background: #60a8f2;
+}
+
+.btn_del {
+  background: #ee493f;
+}
+
+.btn_get:hover,
+.btn_post:hover,
+.btn_put:hover,
+.btn_del:hover {
+  background-color: #f76935;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn_get:focus,
+.btn_post:focus,
+.btn_put:focus,
+.btn_del:focus {
+  outline: none;
+}
+
+.btn_get:active,
+.btn_post:active,
+.btn_put:active,
+.btn_del:active {
+  transform: translateY(0);
+  box-shadow: none;
+  transition: none;
+}
+
+/* Audieur */
+
+.civilite_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
